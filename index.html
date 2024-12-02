@@ -98,37 +98,50 @@
               </h1>
               <div class="is-size-5 publication-authors">
                 <span class="author-block">
-                  <a href="https://francescotaioli.github.io/"
+                  <a href="https://francescotaioli.github.io/" target="_blank"
                     >Francesco Taioli</a
                   ><sup>1,2</sup>,</span
                 >
                 <span class="author-block">
                   <a
                     href="https://scholar.google.com/citations?hl=it&user=fqdv3d4AAAAJ&view_op=list_works&sortby=pubdate"
+                    target="_blank"
                     >Edoardo Zorzi</a
                   ><sup>2</sup>,
                 </span>
                 <span class="author-block"
-                  ><a href="https://giannifranchi.github.io/">Gianni Franchi</a
+                  ><a
+                    href="https://scholar.google.it/citations?hl=it&newwindow=1&user=ZCW6-psAAAAJ&view_op=list_works&sortby=pubdate"
+                    target="_blank"
+                    >Gianni Franchi</a
                   ><sup>3</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://profs.scienze.univr.it/~castellini/"
+                  <a
+                    href="https://scholar.google.it/citations?hl=it&user=AploBScAAAAJ&view_op=list_works&sortby=pubdate"
+                    target="_blank"
                     >Alberto Castellini</a
                   ><sup>2</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="http://profs.sci.univr.it/~farinelli/"
+                  <a
+                    href="https://scholar.google.co.uk/citations?hl=en&user=KHAIAA8AAAAJ&view_op=list_works&sortby=pubdate"
+                    target="_blank"
                     >Alessandro Farinelli</a
                   ><sup>2</sup>,
                 </span>
                 <span class="author-block"
-                  ><a href="https://www.dimi.univr.it/?ent=persona&id=218"
+                  ><a
+                    href="https://scholar.google.com/citations?hl=en&user=LbgTPRwAAAAJ&view_op=list_works&sortby=pubdate"
+                    target="_blank"
                     >Marco Cristani</a
                   ><sup>2</sup>,
                 </span>
                 <span class="author-block"
-                  ><a href="https://www.yimingwang.it/">Yiming Wang</a
+                  ><a
+                    href="https://scholar.google.co.uk/citations?hl=en&user=KBZ3zrEAAAAJ&view_op=list_works&sortby=pubdate"
+                    target="_blank"
+                    >Yiming Wang</a
                   ><sup>4</sup>
                 </span>
               </div>
@@ -205,7 +218,7 @@
                     alt="Teaser"
                   />
                   <div class="content has-text-justified">
-                    <p style="padding: 0px 2em 0 2em">
+                    <p style="padding: 1em 2em 0em 2em">
                       Sketched episode of the proposed
                       <b><i>Collaborative Instance Navigation (CoIN)</i></b>
                       task. The human user (bottom left) provides a request (<i
@@ -233,7 +246,7 @@
                         ></b
                       >, producing a refined
                       <b><font color="green">detection description</font></b
-                      >. The<b>Interaction Trigger</b> uses this refined
+                      >. The <b>Interaction Trigger</b> uses this refined
                       description to decide whether to pose a question to the
                       user (①,③,④), continue the navigation (②) or halt the
                       exploration (⑤).
@@ -247,11 +260,65 @@
       </div>
     </section>
 
+    <section class="hero teaser">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-max-desktop">
+            <div class="content has-text-centered">
+              <div class="columns is-centered">
+                <div class="column is-10">
+                  <br />
+                  <h2 class="title is-3">Abstract</h2>
+                  <div class="content has-text-justified">
+                    <p style="padding: 1em 2em 0em 2em">
+                      Existing embodied instance goal navigation tasks, driven
+                      by natural language, assume human users to provide
+                      complete and nuanced instance descriptions prior to the
+                      navigation, which can be impractical in the real world as
+                      human instructions might be brief and ambiguous.
+                    </p>
+                    <p style="padding: 0em 2em 0em 2em">
+                      &nbsp;&nbsp;&nbsp;To bridge this gap, we propose a new
+                      task, Collaborative Instance Navigation (CoIN), with
+                      dynamic agent-human interaction during navigation to
+                      actively resolve uncertainties about the target instance
+                      in natural, template-free, open-ended dialogues.
+                    </p>
+                    <p style="padding: 0em 2em 0em 2em">
+                      &nbsp;&nbsp;&nbsp;To address CoIN, we propose a novel
+                      method, Agent-user Interaction with UncerTainty Awareness
+                      (AIUTA), leveraging the perception capability of Vision
+                      Language Models (VLMs) and the capability of Large
+                      Language Models (LLMs). First, upon object detection, a
+                      Self-Questioner model initiates a self-dialogue to obtain
+                      a complete and accurate observation description, while a
+                      novel uncertainty estimation technique mitigates
+                      inaccurate VLM perception. Then, an Interaction Trigger
+                      module determines whether to ask a question to the user,
+                      continue or halt navigation, minimizing user input.
+                    </p>
+
+                    <p style="padding: 0em 2em 0em 2em">
+                      &nbsp;&nbsp;&nbsp;For evaluation, we introduce CoIN-Bench,
+                      a benchmark supporting both real and simulated humans.
+                      AIUTA achieves competitive performance in instance
+                      navigation against state-of-the-art methods, demonstrating
+                      great flexibility in handling user inputs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
-      <div class="container is-max-desktop">
-        <!-- Abstract. -->
+      <div class="container is-max-desktop is-centered">
+        <!-- Abstract.
         <div class="columns is-centered has-text-centered">
-          <div class="column is-full">
+          <div class="column is-10">
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
@@ -290,13 +357,13 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
         <!--/ Abstract. -->
 
         <!-- Paper video. -->
         <div class="columns is-centered has-text-centered">
           <div class="column is-is-full">
-            <h2 class="title is-3">Video</h2>
+            <h2 class="title is-3">Method</h2>
             <div class="publication-video">
               <iframe
                 style="display: block; background-color: white"
