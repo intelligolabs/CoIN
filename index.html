@@ -1,8 +1,355 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Agent Self-Dialogue allows user input minimization"
+    />
+    <meta
+      name="keywords"
+      content="AIUTA, VLM, LLM, Large Language Model, LLama, Vision Language Model, LLava, Embodied AI, Navigation, Uncertainty, Instance Object Navigation, Object Goal Navigation, VLM uncertainty"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Collaborative Instance Navigation: Leveraging Agent Self-Dialogue to
+      Minimize User Input
+    </title>
 
-<h1>tmp</h1>
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
 
-</body>
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <!-- <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" /> -->
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/images/flaticon_coin_128.png" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <!-- <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script> -->
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center">
+          <a class="navbar-item" href="https://francescotaioli.github.io/">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> More Research </a>
+            <div class="navbar-dropdown">
+              <a
+                class="navbar-item"
+                href="https://intelligolabs.github.io/Le-RNR-Map/"
+              >
+                Language-enhanced RNR-Map
+              </a>
+              <a
+                class="navbar-item"
+                href="https://intelligolabs.github.io/R2RIE-CE/"
+              >
+                Mind the Error in VLN
+              </a>
+              <a
+                class="navbar-item"
+                href="https://intelligolabs.github.io/unsupervised_active_visual_search/"
+              >
+                POMP-BE-PD
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                Collaborative Instance Navigation: Leveraging Agent
+                Self-Dialogue to Minimize User Input
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://francescotaioli.github.io/"
+                    >Francesco Taioli</a
+                  ><sup>1,2</sup>,</span
+                >
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?hl=it&user=fqdv3d4AAAAJ&view_op=list_works&sortby=pubdate"
+                    >Edoardo Zorzi</a
+                  ><sup>2</sup>,
+                </span>
+                <span class="author-block"
+                  ><a href="https://giannifranchi.github.io/">Gianni Franchi</a
+                  ><sup>3</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://profs.scienze.univr.it/~castellini/"
+                    >Alberto Castellini</a
+                  ><sup>2</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="http://profs.sci.univr.it/~farinelli/"
+                    >Alessandro Farinelli</a
+                  ><sup>2</sup>,
+                </span>
+                <span class="author-block"
+                  ><a href="https://www.dimi.univr.it/?ent=persona&id=218"
+                    >Marco Cristani</a
+                  ><sup>2</sup>,
+                </span>
+                <span class="author-block"
+                  ><a href="https://www.yimingwang.it/">Yiming Wang</a
+                  ><sup>4</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"
+                  ><sup>1</sup>Polytechnic of Turin,</span
+                >
+                <span class="author-block"
+                  ><sup>2</sup>University of Verona,</span
+                >
+                <span class="author-block"
+                  ><sup>3</sup>U2IS, ENSTA Paris, Institut Polytechnique de
+                  Paris</span
+                >
+                <span class="author-block"
+                  ><sup>4</sup>Fondazione Bruno Kessler</span
+                >
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a
+                      href="https://github.com/intelligolabs/CoIN"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code (coming soon)</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="far fa-images"></i>
+                      </span>
+                      <span>Data - CoIN-Bench (coming soon)</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="far fa-images"></i>
+                      </span>
+                      <span>Data - IDKVQA dataset (coming soon)</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-max-desktop">
+            <div class="content has-text-centered">
+              <div class="columns is-centered">
+                <div class="column is-10">
+                  <img
+                    class="image is-fullwidth"
+                    src="./static/images/teaser.png"
+                    alt="Teaser"
+                  />
+                  <div class="content has-text-justified">
+                    <p style="padding: 0px 2em 0 2em">
+                      Sketched episode of the proposed
+                      <b><i>Collaborative Instance Navigation (CoIN)</i></b>
+                      task. The human user (bottom left) provides a request (<i
+                        >"Find the picture"</i
+                      >
+                      ) in <i>natural language</i>. The agent has to locate the
+                      object within a <i>completely unknown environment</i>,
+                      interacting with the user only when needed via
+                      <i>template-free, open-ended</i> natural-language
+                      dialogue. Our method, <b>A</b>gent-user <b>I</b>nteraction
+                      with <b>U</b>ncerTainty <b>A</b>wareness (<b>AIUTA</b>),
+                      addresses this challenging task, minimizing user
+                      interactions by equipping the agent with two modules: a
+                      <b>Self-Questioner</b> and an <b>Interaction Trigger</b>,
+                      whose output is shown in the blue boxes along the agent’s
+                      path (① to ⑤), and whose inner working is shown on the
+                      right. The <b>Self-Questioner</b> leverages a Large
+                      Language Model (LLM) and Vision Language Model (VLM) in a
+                      self-dialogue to initially describe the agent’s
+                      observation, and then extract additional relevant details,
+                      with a novel entropy-based technique to reduce
+                      <b
+                        ><font color="red"
+                          >hallucinations and inaccuracies</font
+                        ></b
+                      >, producing a refined
+                      <b><font color="green">detection description</font></b
+                      >. The<b>Interaction Trigger</b> uses this refined
+                      description to decide whether to pose a question to the
+                      user (①,③,④), continue the navigation (②) or halt the
+                      exploration (⑤).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Existing embodied instance goal navigation tasks, driven by
+                natural language, assume human users to provide complete and
+                nuanced instance descriptions prior to the navigation, which can
+                be impractical in the real world as human instructions might be
+                brief and ambiguous.
+              </p>
+              <p>
+                &nbsp;&nbsp;&nbsp;To bridge this gap, we propose a new task,
+                Collaborative Instance Navigation (CoIN), with dynamic
+                agent-human interaction during navigation to actively resolve
+                uncertainties about the target instance in natural,
+                template-free, open-ended dialogues.
+              </p>
+              <p>
+                &nbsp;&nbsp;&nbsp;To address CoIN, we propose a novel method,
+                Agent-user Interaction with UncerTainty Awareness (AIUTA),
+                leveraging the perception capability of Vision Language Models
+                (VLMs) and the capability of Large Language Models (LLMs).
+                First, upon object detection, a Self-Questioner model initiates
+                a self-dialogue to obtain a complete and accurate observation
+                description, while a novel uncertainty estimation technique
+                mitigates inaccurate VLM perception. Then, an Interaction
+                Trigger module determines whether to ask a question to the user,
+                continue or halt navigation, minimizing user input.
+              </p>
+
+              <p>
+                &nbsp;&nbsp;&nbsp;For evaluation, we introduce CoIN-Bench, a
+                benchmark supporting both real and simulated humans. AIUTA
+                achieves competitive performance in instance navigation against
+                state-of-the-art methods, demonstrating great flexibility in
+                handling user inputs.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+
+        <!-- Paper video. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-is-full">
+            <h2 class="title is-3">Video</h2>
+            <div class="publication-video">
+              <iframe
+                style="display: block; background-color: white"
+                src="static/videos/aiuta_demo.mp4"
+                frameborder="0"
+                width="1920"
+                height="1080"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <!--/ Paper video. -->
+      </div>
+    </section>
+    <!-- 
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>TODO</code></pre>
+      </div>
+    </section> -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered"></div>
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/"
+                  >Creative Commons Attribution-ShareAlike 4.0 International
+                  License</a
+                >.
+              </p>
+              <p>
+                This means you are free to borrow the
+                <a href="https://github.com/nerfies/nerfies.github.io"
+                  >source code</a
+                >
+                of this website, we just ask that you link back to this page in
+                the footer. Please remember to remove the analytics code
+                included in the header of the website which you do not want on
+                your website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
