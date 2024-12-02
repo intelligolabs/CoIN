@@ -318,6 +318,7 @@
 
     <section class="section">
       <div class="container is-max-desktop is-centered">
+        
         <!-- Abstract.
         <div class="columns is-centered has-text-centered">
           <div class="column is-10">
@@ -366,6 +367,25 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-is-full">
             <h2 class="title is-3">Method</h2>
+            <img
+                    class="image is-fullwidth"
+                    src="./static/images/arch_1.png"
+                    alt="Teaser"
+                  />
+            
+            <br>
+            <p style="text-align: justify;">
+              Graphical depiction of <b>AIUTA</b>: left shows its interaction cycle with the user, and right provides an exploded view of our method.
+              ① The agent receives an initial instruction <i>I</i>: "Find a c = <i>< object category > </i>". ② At each timestep t, a zero-shot policy π (VLFM), comprising a
+              frozen object detection module, selects the optimal action a<sub>t</sub>. ③ Upon detection, the agent performs the proposed AIUTA. Specifically,
+              ④ the agent first obtains an initial scene description of observation O<sub>t</sub> from a VLM. Then, a Self-Questioner module leverages an LLM to
+              automatically generate attribute-specific questions to the VLM, acquiring more information and refining the scene description with reduced
+              attribute-level uncertainty, producing S<sub>refined</sub>. ⑤ The Interaction Trigger module then evaluates S<sub>refined</sub> against the “facts” related to
+              the target, to determine whether to terminate the navigation (if the agent believes it has located the target object ⑥), or to pose template-free,
+              natural-language questions to a human ⑦, updating the “facts” based on the response ⑧.
+            </p>
+            <hr>
+            <h1 class="title is-3">Video</h1>
             <div class="publication-video">
               <iframe
                 style="display: block; background-color: white"
@@ -378,6 +398,7 @@
               ></iframe>
             </div>
           </div>
+          
         </div>
         <!--/ Paper video. -->
       </div>
