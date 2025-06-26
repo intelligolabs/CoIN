@@ -1,9 +1,13 @@
 
 <h1 align="center">
-Collaborative Instance Navigation:
-Leveraging Agent Self-Dialogue to Minimize User Input
+Collaborative Instance Object Navigation: Leveraging Uncertainty-Awareness to Minimize Human-Agent Dialogues [ICCV 25]
 </h1>
 
+<div>
+    <p align="center">
+    🎉 ICCV 2025 - <a href="https://intelligolabs.github.io/CoIN">Project Page</a></strong> 🎉 
+    </p>
+</div>
 <div>
     <p align="center">
     <a href='https://francescotaioli.github.io/' target='_blank'>Francesco Taioli</a>,
@@ -19,14 +23,7 @@ Leveraging Agent Self-Dialogue to Minimize User Input
  <!-- Accepted to
   <a href=""></a></h3> -->
 
-<div align="center">
-  <strong><a href="https://intelligolabs.github.io/CoIN">Project Page</a></strong>
-</div>
 
-
-<p align="center">
-contact: <code>francesco.taioli@polito.it</code>
-</p>
 <hr>
 
 <!-- > [!IMPORTANT]
