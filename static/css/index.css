@@ -3,6 +3,48 @@ body {
 }
 
 
+.button_link {
+  background-color: #FFF0CE;
+  color: #000;
+  border: 2px solid #ffc10780;
+  border-radius: 25px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 5px 2px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+.media img {
+  max-width: 32px;
+  height: auto;
+  filter: invert(76%) sepia(14%) saturate(2353%) hue-rotate(346deg) brightness(98%) contrast(89%);
+}
+
+.media-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+.icon-item {
+    align-items: center;
+    display: flex;
+}
+
+.icon-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 1em;
+    filter: invert(76%) sepia(14%) saturate(2353%) hue-rotate(346deg) brightness(98%) contrast(89%);
+}
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .footer .icon-link {
     font-size: 25px;
     color: #000;
