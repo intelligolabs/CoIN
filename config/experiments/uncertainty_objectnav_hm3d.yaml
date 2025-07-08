@@ -1,0 +1,142 @@
+# @package _global_
+
+defaults:
+  - /habitat_baselines: habitat_baselines_rl_config_base
+  - /benchmark/nav/objectnav: objectnav_hm3d
+  - /habitat/task/lab_sensors:
+      - base_explorer
+      - compass_sensor
+      - gps_sensor
+      - heading_sensor
+      - frontier_sensor
+      - instance_imagegoal_sensor
+  - /habitat/task/measurements:
+    - frontier_exploration_map
+    - traveled_stairs
+    - distractor_success
+  - /habitat_baselines/rl/policy: vlfm_policy
+  - _self_
+
+habitat:
+ 
+  dataset:
+    scenes_dir: /home/ftaioli/projects/vlfm/data/scene_datasets/hm3d/val/
+    type: InstanceUncertaintyLanguageDataset-v1  # definition of the CoIN-Bench task
+    data_path: CoIN-Bench/{split}/{split}.json.gz # CoIN-Bench dataset
+
+  task:
+    type: InstanceUncertaintyLanguageTask-v1
+    measurements:
+      distance_to_goal: 
+        distance_to: VIEW_POINTS
+      success:
+          success_distance: 0.25
+
+    success_reward: 2.5
+    slack_reward: -1e-3
+    lab_sensors:
+      base_explorer:
+        turn_angle: 30
+          
+
+  simulator:
+    turn_angle: 30
+    tilt_angle: 30
+    action_space_config: "v1"
+    agents:
+      main_agent:
+        sim_sensors:
+          depth_sensor:
+            width: 512
+            height: 512
+            min_depth: 0.0
+            max_depth: 5.0
+            position: [0, 1.31, 0]
+          rgb_sensor:
+            width: 512
+            height: 512
+            hfov: 42
+            position: [0, 1.31, 0]
+
+        height: 1.41
+        radius: 0.17
+    habitat_sim_v0:
+      gpu_device_id: 0
+      allow_sliding: True
+
+  #### vlfm config
+  environment:
+    iterator_options:
+      max_scene_repeat_steps: 50000
+    max_episode_steps: 500
+
+habitat_baselines:
+  evaluate: True
+  eval_ckpt_path_dir: data/dummy_policy.pth
+  num_environments: 1
+  load_resume_state_config: False
+
+  torch_gpu_id: 0
+  tensorboard_dir: "tb"
+  video_dir: "video_dir"
+  test_episode_count: -1
+  checkpoint_folder: "data/new_checkpoints"
+  trainer_name: "vlfm"
+  num_updates: 270000
+  log_interval: 10
+  num_checkpoints: 100
+  # Force PyTorch to be single threaded as
+  # this improves performance considerably
+  force_torch_single_threaded: True
+
+  video_fps: 5
+  eval:
+    split: "val_unseen"
+    # video_option: ['disk'] # uncomment this to generate videos
+
+  rl:
+
+    policy:
+      name: "HabitatITMPolicyV2"
+
+    ppo:
+      # ppo params
+      clip_param: 0.2
+      ppo_epoch: 4
+      num_mini_batch: 2
+      value_loss_coef: 0.5
+      entropy_coef: 0.01
+      lr: 2.5e-4
+      eps: 1e-5
+      max_grad_norm: 0.2
+      num_steps: 64
+      use_gae: True
+      gamma: 0.99
+      tau: 0.95
+      use_linear_clip_decay: False
+      use_linear_lr_decay: False
+      reward_window_size: 50
+
+      use_normalized_advantage: False
+
+      hidden_size: 512
+
+    ddppo:
+      sync_frac: 0.6
+      # The PyTorch distributed backend to use
+      distrib_backend: NCCL
+      # Visual encoder backbone
+      pretrained_weights: data/ddppo-models/gibson-2plus-resnet50.pth
+      # Initialize with pretrained weights
+      pretrained: False
+      # Initialize just the visual encoder backbone with pretrained weights
+      pretrained_encoder: False
+      # Whether or not the visual encoder backbone will be trained.
+      train_encoder: True
+      # Whether or not to reset the critic linear layer
+      reset_critic: False
+
+      # Model parameters
+      backbone: resnet50
+      rnn_type: LSTM
+      num_recurrent_layers: 2
