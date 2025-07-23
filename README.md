@@ -89,7 +89,7 @@ This will run llava on the IDKVQA dataset and generate all the answers (containe
 
 ## :black_nib: Citation
 
-If you use AIUTA in your research, please use the following BibTeX entry.
+If you use CoIN in your research, please use the following BibTeX entry.
 
 ```
 @misc{taioli2025coin,
