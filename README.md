@@ -16,7 +16,7 @@ Collaborative Instance Object Navigation: Leveraging Uncertainty-Awareness to Mi
 <div>
     <p align="center">
     <a href='https://francescotaioli.github.io/' target='_blank'>Francesco Taioli</a>,
-    Edoardo Zorzi,
+    <a href='https://github.com/e-zorzi' target='_blank'>Edoardo Zorzi</a>,
     Gianni Franchi,
     Alberto Castellini, Alessandro Farinelli, Marco Cristani, Yiming Wang
     </p>
@@ -79,11 +79,17 @@ In the ```notebook``` folder, run ```perception_uncertainty_estimation.ipynb``` 
 ## (Optional) Check our IDKVQA dataset.
 You can download the IDKVQA dataset from [HuggingFace](https://huggingface.co/datasets/ftaioli/IDKVQA).
 
-Usage: TODO
+To reproduce the baseline in our paper, run the following command:
+
+> python idkvqa/llava_vqa_get_answer.py
+
+This will run llava on the IDKVQA dataset and generate all the answers (contained in the folder 'model_results'). Then, run the evaluation script:
+
+> python idkvqa/llava_vqa_eval.py
 
 ## :black_nib: Citation
 
-If you use VLFM in your research, please use the following BibTeX entry.
+If you use CoIN in your research, please use the following BibTeX entry.
 
 ```
 @misc{taioli2025coin,
