@@ -197,3 +197,14 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+
+/* Center the navbar-dropdown under "More Research" */
+.navbar-item.has-dropdown.is-hoverable {
+  position: relative;
+}
+
+.navbar-item.has-dropdown.is-hoverable .navbar-dropdown {
+  left: 50%;
+  transform: translateX(-50%);
+}

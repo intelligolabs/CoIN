@@ -71,19 +71,19 @@
                 class="navbar-item"
                 href="https://intelligolabs.github.io/Le-RNR-Map/"
               >
-                Language-enhanced RNR-Map
+                <b>Language-enhanced RNR-Map</b> (Vision-Language aligned map)
               </a>
               <a
                 class="navbar-item"
                 href="https://intelligolabs.github.io/R2RIE-CE/"
               >
-                Mind the Error in VLN
+                <b>Error Detection and Localization in VLN</b>
               </a>
               <a
                 class="navbar-item"
                 href="https://intelligolabs.github.io/unsupervised_active_visual_search/"
               >
-                POMP-BE-PD
+                <b>POMP-BE-PD</b> (POMCP-based Object Goal Nav.)
               </a>
             </div>
           </div>
@@ -139,7 +139,7 @@
                     href="https://scholar.google.com/citations?hl=en&user=LbgTPRwAAAAJ&view_op=list_works&sortby=pubdate"
                     target="_blank"
                     >Marco Cristani</a
-                  ><sup>2</sup>,
+                  ><sup>2,5</sup>,
                 </span>
                 <span class="author-block"
                   ><a
@@ -157,12 +157,12 @@
                 <span class="author-block"
                   ><sup>2</sup>University of Verona,</span
                 >
-                <span class="author-block"
-                  ><sup>3</sup>U2IS, ENSTA Paris, Institut Polytechnique de
-                  Paris</span
-                >
+                <span class="author-block"><sup>3</sup>U2IS, ENSTA Paris</span>
                 <span class="author-block"
                   ><sup>4</sup>Fondazione Bruno Kessler</span
+                >
+                <span class="author-block"
+                  ><sup>5</sup>University of Reykjavik</span
                 >
               </div>
 
@@ -254,7 +254,16 @@
                       quantify VLM perception uncertainty, along with a
                       dedicated VQA embodied dataset (<strong>IDKVQA</strong>),
                       in which responses can be <em>Yes</em>, <em>No</em>, or
-                      <em>I Don't Know</em>.
+                      <em>I Don't Know</em>. See the
+                      <a
+                        href="https://github.com/intelligolabs/CoIN/tree/master/notebook"
+                        target="_blank"
+                        >python notebook</a
+                      >
+                      and the
+                      <a href="https://huggingface.co/datasets/ftaioli/IDKVQA"
+                        >IDKVQA dataset</a
+                      >.
                     </p>
                   </div>
                 </article>
@@ -273,7 +282,8 @@
                       <em>template-free, open-ended, bidirectional</em>
                       human &harr; agent dialogues. We simulate user responses
                       via a VLM with access to high-resolution images of target
-                      objects.
+                      objects. See the <a href="#Video">video</a> for an example
+                      of a simulated interaction.
                     </p>
                   </div>
                 </article>
@@ -294,7 +304,9 @@
                       <em>Self-Questioner</em> module effectively reduces
                       hallucinations and gather more environmental information,
                       while the <em>Interaction Trigger</em> minimizes
-                      agent-user interactions.
+                      agent-user interactions. See the
+                      <a href="#Self-Questioner">Self-Questioner figure</a> for
+                      an example!
                     </p>
                   </div>
                 </article>
@@ -307,6 +319,179 @@
     </section>
 
     <section class="hero teaser">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-max-desktop">
+            <div class="content has-text-centered">
+              <div class="columns is-centered">
+                <div class="column is-10">
+                  <h2 class="title is-3">Motivation</h2>
+                  <div class="content has-text-justified">
+                    <!-- content -->
+                    <section
+                      class="section"
+                      style="padding-top: 0px !important"
+                    >
+                      <div class="container">
+                        <p class="is-italic mb-4">
+                          <strong>The ObjectGoal Nav task</strong> is
+                          <em>under</em>-specified: the input is a
+                          <i>category c</i>, and the goal is to find
+                          <i>any</i> instance of that category. As we show
+                          below, which one should we navigate to?
+                        </p>
+
+                        <figure
+                          class="image is-inline-block"
+                          style="margin-top: 0em"
+                        >
+                          <img
+                            src="static/images/picture.png"
+                            alt="ObjectGoal example"
+                            style="max-width: 100%; height: auto"
+                          />
+                        </figure>
+
+                        <!-- <p class="mt-4 is-size-5 has-text-weight-semibold">
+                          Which one?
+                        </p> -->
+
+                        <p class="is-italic mb-4">
+                          On the other hand, the
+                          <strong>InstanceObjectGoal Nav task</strong>
+                          is <em>often</em> <b>ambiguous</b> and
+                          <b><em>over</em>-specified:</b>
+                        </p>
+
+                        <figure
+                          class="image is-inline-block"
+                          style="margin-top: 0em"
+                        >
+                          <img
+                            src="static/images/bed.png"
+                            alt="InstanceObjectGoal example"
+                            style="max-width: 100%; height: auto"
+                          />
+                        </figure>
+
+                        <p class="mt-4 is-italic">
+                          The description
+                          <i
+                            >“A bed with cushions and a colored comforter, two
+                            lamps, and a carpet on the floor”</i
+                          >
+                          could apply to all the beds shown in the image above.
+                        </p>
+                        <p>Furthermore,</p>
+
+                        <ol>
+                          <li>
+                            humans aim to <b>minimum input</b>: providing a
+                            long, detailed description before navigation is
+                            demanding and time-consuming.
+                            <i>Would you want to give such a description?</i>
+                          </li>
+                          <li>
+                            <b
+                              >Agents should ask clarifying questions if
+                              necessary.</b
+                            >
+                          </li>
+                        </ol>
+                        <!-- </p> -->
+
+                        <!-- Vertical arrow -->
+
+                        <div
+                          class="my-4 has-text-centered"
+                          style="
+                            padding-top: 0px !important;
+                            margin-bottom: 0px !important;
+                          "
+                        >
+                          <span style="font-size: 2rem">⬇️</span>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-max-desktop">
+            <div class="content has-text-centered">
+              <div class="columns is-centered">
+                <div class="column is-10">
+                  <h2 class="title is-3">AIUTA: Our Method</h2>
+                  <div class="content has-text-justified">
+                    <!-- content -->
+                    <section
+                      class="section"
+                      style="padding-top: 0px !important"
+                    >
+                      <div class="container">
+                        <p>
+                          We propose a novel <b>embodied reasoning</b> method
+                          for human-agent interaction reasoning. Our method
+                          integrates two key components: a
+                          <strong>Self-Questioner</strong> and an
+                          <strong>Interaction Trigger</strong>.
+                        </p>
+
+                        <p>Specifically, the agent:</p>
+
+                        <ol>
+                          <li>
+                            <p>
+                              Executes a <b>self-questioning</b> procedure to
+                              automatically gather more information from the
+                              environment (<i>e.g., Is the whall light blue?</i
+                              >), reduce hallucination through a novel
+                              normalized-entropy-based technique, and generate a
+                              refined description of its observations.
+                            </p>
+                            <p>
+                              Our agent is equipped with a Large Language Model
+                              (LLM) and a Vision-Language Model (VLM). When
+                              environmental information is missing, the
+                              self-questioning mechanism is designed from the
+                              ground up to automatically leverage the LLM to
+                              generate the most informative question, and then
+                              use the VLM to extract the corresponding answer
+                              from the visual input.
+                            </p>
+                          </li>
+                          <li>
+                            Decides whether to ask a clarifying question to the
+                            user, continue navigating, or halt exploration,
+                            based on the refined description and the “facts”
+                            associated with the target.
+                          </li>
+                        </ol>
+
+                        <p class="mt-4">
+                          See the illustration below, based on a real example of
+                          our method in action.
+                        </p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser" id="Self-Questioner">
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-max-desktop">
@@ -462,6 +647,81 @@
               ⑧.
             </p>
             <hr />
+          </div>
+        </div>
+        <!--/ Paper video. -->
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-max-desktop">
+            <div class="content has-text-centered">
+              <div class="columns is-centered">
+                <div class="column is-12">
+                  <h2 class="title is-4">
+                    <span class="link-block">
+                      <a
+                        href="https://huggingface.co/datasets/ftaioli/IDKVQA"
+                        class="button_link"
+                        target="_blank"
+                      >
+                        <span class="is-small">
+                          <img
+                            src="static/images/huggingface_logo.svg"
+                            alt="Hugging Face logo"
+                            style="height: 1em; width: auto"
+                          />
+                        </span>
+                        <span>I don't know VQA dataset - IDKVQA</span>
+                      </a>
+                    </span>
+                  </h2>
+                  <div class="content has-text-justified is-centered">
+                    <!-- content -->
+                    <section
+                      class="section"
+                      style="padding-top: 0px !important"
+                    >
+                      <div class="container">
+                        <p>
+                          <b>Not every question has an answer.</b> That's why we
+                          created the I Don't Know VQA dataset, a VQA dataset
+                          where answers can be Yes, No, or I don't know.
+                        </p>
+                        <p>We extensively described the IDKVQA dataset in the supplementary material and in the <a href="https://huggingface.co/datasets/ftaioli/IDKVQA"> HF dataset page.</a></p>
+
+                        <figure
+                          class="image is-inline-block"
+                          style="margin-top: 0em"
+                        >
+                          <img
+                            src="static/images/idkvqa.png"
+                            alt="ObjectGoal example"
+                            style="
+                              max-width: 50%;
+                              height: auto;
+                              margin-left: 15%;
+                            "
+                          />
+                        </figure>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="Video">
+      <div class="container is-max-desktop is-centered">
+        <!-- Paper video. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-is-full">
             <h1 class="title is-3">Video</h1>
             <div class="publication-video">
               <iframe
