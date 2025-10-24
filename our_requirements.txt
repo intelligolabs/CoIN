@@ -16,3 +16,10 @@ tqdm==4.66.2
 typing_extensions==4.11.0
 torch==2.2.2
 torchvision==0.17.2
+hydra-core==1.3.2
+numpy==1.25.0
+scipy==1.10.1
+habitat-baselines==0.2.420230405
+habitat-lab==0.2.420230405
+frontier_exploration @ git+https://github.com/e-zorzi/frontier_exploration.git
+depth_camera_filtering @ git+https://github.com/naokiyokoyama/depth_camera_filtering
