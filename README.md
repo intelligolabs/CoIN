@@ -55,12 +55,16 @@ You can download the CoIN-Bench dataset from [HuggingFace](https://huggingface.c
 
 ## LLM key
 To use the LLM client, you need to set up an environment variable with your OpenAI key (or Groq key).
-Simply run the following command in the root directory of this repository:
+
+Simply set the `COIN_LLM_CLIENT_KEY` environmental variable to your OpenAI key (or [Groq, free key](https://groq.com/), or Cerebras etc.), like
+
 ```bash
-mv sample.env.llm_client_key .env.llm_client_key
+export COIN_LLM_CLIENT_KEY=<your_key>
 ```
-Then, edit the file `.env.llm_client_key` and set the `LLM_CLIENT_KEY` variable to your OpenAI key (or [Groq, free key](https://groq.com/)).
-If you want to use Groq, the variable in ```test_with_groq``` should be set to ```True``` in ```vlfm/policy/base_objectnav_policy.py```.
+
+in the file where you export your env variables.
+
+If you want to use Groq (or alternative providers), the variable in ```test_with_groq``` should be set to ```True``` in ```vlfm/policy/base_objectnav_policy.py```.
 
 # Usage
 ## Evaluation
