@@ -20,7 +20,7 @@ defaults:
 habitat:
  
   dataset:
-    scenes_dir: /home/ftaioli/projects/vlfm/data/scene_datasets/hm3d/val/
+    scenes_dir: ./data/scene_datasets/hm3d/val/
     type: InstanceUncertaintyLanguageDataset-v1  # definition of the CoIN-Bench task
     data_path: CoIN-Bench/{split}/{split}.json.gz # CoIN-Bench dataset
 
