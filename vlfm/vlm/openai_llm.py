@@ -4,7 +4,6 @@ from colorama import init as init_colorama
 from openai import OpenAI
 
 init_colorama(autoreset=True)
-from dotenv import load_dotenv
 from retrying import retry
 from openai import APIConnectionError, APITimeoutError, InternalServerError, RateLimitError
 
@@ -13,10 +12,9 @@ class OpenAILLMClient:
     def __init__(self, llm_client_params) -> None:
         print(Fore.YELLOW + f"[INFO] Initializing OpenAI LLM")
 
-        load_dotenv(".env.llm_client_key")
         all_env_vars = os.environ
 
-        self.api_keys = [value for key, value in all_env_vars.items() if key.startswith("LLM_CLIENT_KEY")]
+        self.api_keys = [value for key, value in all_env_vars.items() if key.startswith("COIN_LLM_CLIENT_KEY")]
         llm_client_params["api_key"] = self.api_keys[0] if self.api_keys else None
         self.model = llm_client_params.get("model", "gpt-4o")
         del llm_client_params["model"]
