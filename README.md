@@ -9,8 +9,13 @@ Collaborative Instance Object Navigation: Leveraging Uncertainty-Awareness to Mi
 </h1>
 
 <div>
+  <p align="center"> 
+    <strong>[October 2026] We released a new benchmark with improved evaluation, dataset, and models <a href="https://benchmarking-interaction.github.io/">here</a>! </strong>
+  </p>
+</div>
+<div>
     <p align="center">
-    🎉 ICCV 2025 - <a href="https://intelligolabs.github.io/CoIN">Project Page</a></strong> 🎉 
+    🎉 ICCV 2025 - <a href="https://intelligolabs.github.io/CoIN">Project Page</a> 🎉 
     </p>
 </div>
 <div>
